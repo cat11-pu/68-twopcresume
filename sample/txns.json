@@ -1,0 +1,23 @@
+{
+  "quorum": 2,
+  "txn_count": 3,
+  "single_decision_invariant": true,
+  "resume_txns": ["t1", "t2", "t3"],
+  "ops": [
+    {"op": "enlist", "txn": "t1", "nodes": ["n1", "n2", "n3"]},
+    {"op": "vote", "txn": "t1", "node": "n1", "yes": true},
+    {"op": "vote", "txn": "t1", "node": "n2", "yes": true},
+    {"op": "decide", "txn": "t1"},
+    {"op": "enlist", "txn": "t2", "nodes": ["n1", "n2"]},
+    {"op": "vote", "txn": "t2", "node": "n1", "yes": true},
+    {"op": "vote", "txn": "t2", "node": "n2", "yes": false},
+    {"op": "decide", "txn": "t2"},
+    {"op": "enlist", "txn": "t3", "nodes": ["n1", "n2", "n3"]},
+    {"op": "vote", "txn": "t3", "node": "n1", "yes": true},
+    {"op": "vote", "txn": "t3", "node": "n2", "yes": true},
+    {"op": "decide", "txn": "t3"},
+    {"op": "resume", "txn": "t1"},
+    {"op": "resume", "txn": "t3"},
+    {"op": "resume", "txn": "t1"}
+  ]
+}
